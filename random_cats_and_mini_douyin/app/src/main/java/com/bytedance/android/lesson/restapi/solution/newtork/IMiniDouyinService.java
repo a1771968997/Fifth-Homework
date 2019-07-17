@@ -16,7 +16,14 @@ import retrofit2.http.Query;
  * @date 2019.01.17 20:38
  */
 public interface IMiniDouyinService {
+    String Host ="http://test.androidcamp.bytedance.com/";
     // TODO-C2 (7) Implement your MiniDouyin PostVideo Request here,
+    @Multipart
+    @POST("mini_douyin/invoke/video")
+    Call<PostVideoResponse> createVideo(
+            @Query("student_id") String param1,
+            @Query("user_name") String param2,
+            @Part MultipartBody.Part image,@Part MultipartBody.Part video);
     // url: (POST) http://test.androidcamp.bytedance.com/mini_douyin/invoke/video?student_id={student_id}&user_name={user_name}
     // body
     // + cover_image，file
@@ -30,6 +37,8 @@ public interface IMiniDouyinService {
     //}
 
     // TODO-C2 (8) Implement your MiniDouyin Feed Request here, url: (GET) http://test.androidcamp.bytedance.com/mini_douyin/invoke/video
+    @GET("mini_douyin/invoke/video")
+    Call<FeedResponse> fetchFeed();
     // response
     // {
     //    "feeds":[
